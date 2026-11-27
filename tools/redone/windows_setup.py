@@ -12,7 +12,8 @@ import tkinter as tk
 from tkinter import filedialog, ttk
 from zipfile import BadZipFile
 
-from apply_diabloloot import install
+from apply_diabloloot import apply_delta, install
+from theme_install import THEME_INDEX, THEME_NAMES, set_theme
 
 ASSETS = Path(__file__).resolve().with_name('redone-package')
 
@@ -70,9 +71,14 @@ class SetupWindow:
         self.busy = False
         self.installed = None
         self.error = None
+        self.theme_names = {name: key for key, name in THEME_NAMES.items()}
+        self.with_themes = (assets / THEME_INDEX).is_file()
+        default_theme = settings.get('default_theme', 'classic')
+        self.theme = tk.StringVar(value=THEME_NAMES[default_theme])
+        self.manage_theme = tk.BooleanVar(value=False)
 
         root.title(f'{self.name} Setup')
-        root.minsize(680, 395)
+        root.minsize(680, 490 if self.with_themes else 395)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(1, weight=1)
         root.protocol('WM_DELETE_WINDOW', self.close)
@@ -121,9 +127,23 @@ class SetupWindow:
         target_button.grid(row=5, column=2, padx=(8, 0))
         self.inputs = (self.source_entry, zip_button, folder_button, target_entry, target_button)
         self.status = tk.StringVar(value='The patched games need a Win16 runtime to play.')
+        status_row = 6
+        if self.with_themes:
+            ttk.Label(form, text='3. Choose an interface theme', style='Step.TLabel').grid(
+                row=6, column=0, columnspan=3, sticky='w', pady=(16, 4))
+            themes = ttk.Combobox(form, textvariable=self.theme, state='readonly',
+                                  values=tuple(THEME_NAMES.values()), width=20)
+            themes.grid(row=7, column=0, sticky='w')
+            mode = ttk.Checkbutton(form, text='Change the theme in an existing installation',
+                                   variable=self.manage_theme, command=self.update_action)
+            mode.grid(row=8, column=0, columnspan=3, sticky='w', pady=(6, 0))
+            self.inputs += (themes, mode)
+            self.theme_combo = themes
+            self.destination_widgets = (target_entry, target_button)
+            status_row = 9
         self.notice = ttk.Label(form, textvariable=self.status, wraplength=600,
                                style='Status.TLabel', justify='left')
-        self.notice.grid(row=6, column=0, columnspan=3, sticky='we', pady=(16, 0))
+        self.notice.grid(row=status_row, column=0, columnspan=3, sticky='we', pady=(16, 0))
         form.bind('<Configure>', lambda event: self.notice.configure(wraplength=max(240, event.width - 48)))
 
         footer = ttk.Frame(root, padding=(24, 0, 24, 16))
@@ -139,7 +159,11 @@ class SetupWindow:
         self.source_entry.focus_set()
 
     def update_action(self, *_args):
-        ready = bool(self.source.get().strip() and self.target.get().strip()) and not self.busy
+        manage = self.with_themes and self.manage_theme.get()
+        ready = bool(self.source.get().strip() and (manage or self.target.get().strip())) and not self.busy
+        if self.with_themes and not self.busy:
+            for widget in self.destination_widgets:
+                widget.configure(state='disabled' if manage else 'normal')
         self.action.configure(state='normal' if ready or self.installed else 'disabled')
 
     def select_zip(self):
@@ -161,8 +185,16 @@ class SetupWindow:
     def begin(self):
         if self.busy or self.installed:
             return
+        manage = self.with_themes and self.manage_theme.get()
+        theme = self.theme_names[self.theme.get()] if self.with_themes else None
         try:
-            source, target = validate_paths(self.source.get(), self.target.get())
+            if manage:
+                source = Path(self.source.get().strip().strip('"')).expanduser().resolve()
+                if not source.is_dir():
+                    raise ValueError('Choose the installed game folder and close both games first')
+                target = source
+            else:
+                source, target = validate_paths(self.source.get(), self.target.get())
         except (ValueError, OSError, RuntimeError) as error:
             self.show_error(error)
             return
@@ -173,12 +205,15 @@ class SetupWindow:
         self.update_action()
         self.notice.configure(style='Status.TLabel')
         self.status.set('Checking the game files and installing both chapters…')
-        Thread(target=self.run_install, args=(source, target), daemon=True).start()
+        Thread(target=self.run_install, args=(source, target, theme, manage), daemon=True).start()
         self.root.after(60, self.poll)
 
-    def run_install(self, source, target):
+    def run_install(self, source, target, theme, manage):
         try:
-            install(source, target, self.assets)
+            if manage:
+                set_theme(source, theme, self.assets, apply_delta)
+            else:
+                install(source, target, self.assets, theme)
         except Exception as error:
             self.events.put((None, error))
         else:
@@ -194,6 +229,8 @@ class SetupWindow:
         if error:
             for widget in self.inputs:
                 widget.configure(state='normal')
+            if self.with_themes:
+                self.theme_combo.configure(state='readonly')
             self.update_action()
             self.show_error(error)
             return
@@ -243,6 +280,10 @@ def verify_install(args, settings):
             root = tk.Tk()
             root.withdraw()
             window = SetupWindow(root, settings, ASSETS)
+            if args.theme and window.with_themes:
+                window.theme.set(THEME_NAMES[args.theme])
+            window.manage_theme.set(args.manage)
+            window.update_action()
             assert str(window.action.cget('state')) == 'disabled'
             window.source.set(args.source)
             window.target.set(args.destination)
@@ -258,9 +299,14 @@ def verify_install(args, settings):
                 raise RuntimeError('Setup did not complete in the allotted time')
             assert window.action.cget('text') == 'Open install folder'
         else:
-            source, target = validate_paths(args.source, args.destination)
-            install(source, target, ASSETS)
+            if args.manage:
+                set_theme(Path(args.source), args.theme, ASSETS, apply_delta)
+            else:
+                source, target = validate_paths(args.source, args.destination)
+                install(source, target, ASSETS, args.theme)
         report = {'success': True, 'edition': settings['name'], 'ui': args.ui}
+        if args.theme:
+            report['theme'] = args.theme
     except Exception as error:
         report = {'success': False, 'error': friendly_error(error), 'type': type(error).__name__}
     finally:
@@ -278,6 +324,8 @@ def main():
         parser.add_argument('--source', required=True)
         parser.add_argument('--destination', required=True)
         parser.add_argument('--ui', action='store_true')
+        parser.add_argument('--theme', choices=THEME_NAMES)
+        parser.add_argument('--manage', action='store_true')
         return verify_install(parser.parse_args(), settings)
     root = tk.Tk()
     root.withdraw()

@@ -16,6 +16,7 @@ EDITIONS = {
     'all-in-one': ('All-in-One', 'v1.1'),
     'more-monsters': ('More Monsters', 'v1.0'),
     'all-in-one-full': ('All-in-One', 'v1.0'),
+    'enhanced-interface': ('Enhanced Interface', 'v1.0'),
 }
 
 
@@ -29,8 +30,12 @@ def bundle(package_root, destination, edition):
         package = package_root / edition
         for filename in [package / 'patches.json', *sorted(package.glob('*.dlpatch'))]:
             shutil.copyfile(filename, assets / filename.name)
+        config = {'name': name, 'version': version, 'folder': name}
+        if (theme_index := package / 'interface.json').is_file():
+            shutil.copyfile(theme_index, assets / theme_index.name)
+            config['default_theme'] = json.loads(theme_index.read_bytes())['default_theme']
         (assets / 'setup.json').write_text(json.dumps({
-            'name': name, 'version': version, 'folder': name,
+            **config,
         }), encoding='utf-8')
         shutil.copyfile(SOURCE / 'redone.ico', assets / 'redone.ico')
 

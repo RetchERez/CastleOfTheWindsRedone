@@ -82,6 +82,7 @@ def write_release(vanilla, editions, output):
                                      'sha256': digest(patched), 'patch': patch_name})
     (output / 'patches.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     shutil.copyfile(Path(__file__).with_name('apply_diabloloot.py'), output / 'apply_redone.py')
+    shutil.copyfile(Path(__file__).with_name('theme_install.py'), output / 'theme_install.py')
 
 
 def make_release(vanilla, first, other, combined, output):
