@@ -13,3 +13,7 @@ On 64-bit Windows, all six v1.1 setup executables ran with their windows withdra
 - Captured the actual title screens and loaded an existing save from each in Windows 3.1 on a private DOSBox display. [Part I](screenshots/Redone-Title-Part-I.png) · [Part II](screenshots/Redone-Title-Part-II.png)
 
 Game behavior is covered by the [original v1.0 checks](Redone-v1.0.md) and the [v1.0 refresh checks](Redone-v1.0-refresh.md). The title changes preserve the original game code and artwork outside the blank band below the blue logo. The v1.1 checks did not rerun the campaigns.
+
+## v1.1 Updated theme fix
+
+The earlier v1.1 theme switch could reuse an unbranded Classic backup from a supported v1.0 installation. The corrected setup verifies and upgrades the Classic executable before applying the selected theme. It puts both replacement backups in `.bak` files and leaves saves alone. The same setup can find both adventures in the Collection repack.

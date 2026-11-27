@@ -4,7 +4,7 @@ Five mods for both adventures of the original Win16 *Castle of the Winds* v1.1A,
 
 Every v1.1 package adds **REDONE** in gold and **BY RETCH** in bold white on one line below the original title logo.
 
-[Download Redone v1.1](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.1)
+[Download Redone v1.1 Updated](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.1-updated)
 
 | v1.1 package | What it changes |
 | --- | --- |
@@ -36,7 +36,7 @@ Choose a new destination at each step. When selecting a previous install, choose
 
 The standalone Enhanced Interface setup defaults to Warm Stone. All-in-One defaults to Classic. To switch themes, close both games and rerun Setup with **Change the theme in an existing installation** selected.
 
-Keep the `CASTLE1 Classic.bak` and `CASTLE2 Classic.bak` files beside the game executables. Setup uses these backups to switch themes and restore Classic. Older installs may use `.bin` for the same backups.
+Keep the `CASTLE1 Classic.bak` and `CASTLE2 Classic.bak` files beside the game executables. Setup uses these backups to switch themes and restore Classic. v1.1 Updated preserves the Redone title when it switches a supported older installation and replaces its legacy `.bin` backups with `.bak` files. It also recognizes both chapters in the Collection repack's `Win3.1` folder.
 
 ## In-game preview
 

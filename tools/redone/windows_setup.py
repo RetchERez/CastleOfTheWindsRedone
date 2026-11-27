@@ -229,6 +229,21 @@ class SetupWindow:
         if folder:
             self.target.set(str(next_destination(Path(folder), self.folder_name)))
 
+    def select_repack(self, directory):
+        guest = directory / 'Win3.1'
+        if not self.with_themes or not all((guest / f'Castle{chapter}' / f'CASTLE{chapter}.EXE').is_file()
+                                           for chapter in (1, 2)):
+            return
+        self.manage_theme.set(True)
+        receipt = directory / 'Interface Theme.txt'
+        if receipt.is_file():
+            current = receipt.read_text(encoding='utf-8').strip()
+            if current in self.theme_names:
+                self.theme.set(current)
+        else:
+            self.theme.set(THEME_NAMES['classic'])
+        self.select_source(str(directory))
+
     def begin(self):
         if self.busy or self.installed:
             return
@@ -380,7 +395,9 @@ def main():
         return verify_install(parser.parse_args(), settings)
     root = tk.Tk()
     root.withdraw()
-    SetupWindow(root, settings, ASSETS)
+    setup = SetupWindow(root, settings, ASSETS)
+    if getattr(sys, 'frozen', False):
+        setup.select_repack(Path(sys.executable).resolve().parent)
     root.update_idletasks()
     root.deiconify()
     root.mainloop()
