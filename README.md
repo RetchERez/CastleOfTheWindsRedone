@@ -30,7 +30,9 @@ Choose a new destination each time. When using a previous install as the source,
 
 ## In-game previews
 
-![Nine gameplay screenshots from All-in-One](docs/verification/All-in-One-Gameplay-Collage.png)
+![Six standalone mod screenshots with Part I on the left and Part II on the right](docs/verification/Standalone-Mods-Gameplay-Collage.png)
+
+[Open the six native 640 × 480 screenshots](docs/verification/standalone/)
 
 ![The 40 original More Monsters sprites](docs/verification/More-Monsters-Roster.png)
 
