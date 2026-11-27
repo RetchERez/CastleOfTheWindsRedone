@@ -10,7 +10,7 @@ Four mods for both adventures of the original Win16 *Castle of the Winds* v1.1A,
 | **Diablo Loot** | Adds randomized gear to enemy drops and shops, with blue Enchanted, yellow Rare, and orange Legendary marks. Cursed gear reveals its rarity when equipped |
 | **More Monsters** | Adds 25 enemy types in Part I and 40 in Part II, with original 32 × 32 sprites and the existing spawn points |
 | **More Equipment** | Adds 16 weapons and 12 other equipment types to each game, including the Buckler and Potion Belt |
-| **Graphics Overhaul** | Includes Black Background, new wall and outdoor textures, town detail, and updates to monster art, item icons, and the toolbar. Keeps the original dungeon floors and town cobblestone |
+| **Graphics Overhaul** | Gives unexplored dungeon areas a black background and updates walls, outdoor textures, town details, monster art, item icons, and toolbar icons. Keeps the original inventory, menu, and dialog background colors, dungeon floors, and town cobblestone |
 
 ## Install
 

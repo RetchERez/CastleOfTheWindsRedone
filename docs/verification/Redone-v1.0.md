@@ -7,6 +7,8 @@ The release targets the registered Windows v1.1A executables. The main functiona
 - Installed each Windows Setup in a withdrawn test window and checked both game and Help files against the expected payload
 - Installed all four standalone mods in order and matched the direct All-in-One game and Help files byte for byte
 - Verified the Black Background migration to Graphics Overhaul and rejected an executable with a modified byte
+- Downloaded the public All-in-One Windows Setup and installed both games from the registered v1.1A ZIP. Opened a pre-mod save for each chapter, saved to a new file, and reloaded it. The original ZIP and saves retained their hashes. Both round trips preserved the player's equipment, inventory, XP, HP, mana, map and position
+- Compared the inventory, File menu, and Save As interface surfaces against the original game in both chapters. The sampled pixels matched in all four standalone downloads and All-in-One. Graphics Overhaul supplies the black dungeon background
 - Applied and restored both Graphics Overhaul and More Equipment BPS patches and checked the resulting binaries against the expected originals and outputs
 - Used native town shops, purchased and equipped gear, climbed stairs, fought enemies, picked up dropped gear, saved, and reloaded in both games
 - Replayed 240 matched bonus-reward cases across both games with the Buckler compatibility hook, including 49 Buckler substitutions and native curse reveal checks

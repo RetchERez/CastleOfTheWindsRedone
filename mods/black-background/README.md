@@ -1,11 +1,5 @@
-# Black Background v1.0
+# Black dungeon background
 
-Makes unexplored map cells black in both chapters of the original Win16 *Castle of the Winds* v1.1A. Explored terrain, creatures, and the interface keep their original colors.
+The black dungeon background is part of [Graphics Overhaul](../../README.md) in Redone v1.0. Install Graphics Overhaul or All-in-One to get it in both chapters.
 
-On 64-bit Windows, open the **Windows Setup** asset, select your game files, and choose **Install**. The setup includes its own runtime. For the portable ZIP, extract it and use the following command.
-
-```powershell
-py -3 apply_redone.py castl11a.zip Redone-Black-Background
-```
-
-Use `python3` on Linux. The current release assets accept original files or DiabloLoot v1.1 or v1.2. Choose a new output folder. Open the matching chapter's EXE in a Win16 runtime, and copy saves separately.
+If you have an earlier Black Background installation, select its game folder as the source when installing Graphics Overhaul. Choose a new destination and copy your saves separately.
