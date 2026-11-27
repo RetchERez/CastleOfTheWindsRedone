@@ -20,6 +20,8 @@ python tools/redone/build_mods.py private-inputs dist
 
 This creates the three installer folders under `dist`. Zip each folder's contents to make a patch distribution. The build checks the original executable hashes. The installer checks all four input files and writes a new output directory.
 
+To include direct upgrades from the previous releases, pass both `--previous-loot` and `--previous-combined` with folders containing their two verified EXEs. Omit both arguments for a build from the original game and current standalone mods.
+
 To run the relocation tests with your original files on Linux:
 
 ```sh
@@ -27,3 +29,14 @@ COTW_VANILLA=private-inputs python -m unittest discover -s tools/redone -v
 ```
 
 In PowerShell, set `$env:COTW_VANILLA = 'private-inputs'` before running the same unittest command. Original binaries, runtime files, and saves stay outside version control.
+
+## Build the Windows setup files
+
+Use 64-bit Python for Windows with Tcl/Tk installed and build the three patch folders above first. Then run the following from the repository root.
+
+```powershell
+py -3 -m pip install pyinstaller==6.22.3
+py -3 tools/redone/package_windows.py dist dist/windows
+```
+
+The resulting three EXEs bundle the setup runtime, the corresponding patch data, and runtime license notices. The original game files stay in your own source folder.

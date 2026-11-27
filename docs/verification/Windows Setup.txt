@@ -1,0 +1,22 @@
+Castle of the Winds Redone
+Windows Setup verification
+
+The three 64-bit setup EXEs ran with an isolated Windows PATH and no
+Python environment variables. The bundled GUI and its asynchronous
+installation path were exercised with their windows unmapped.
+
+Verified install paths
+
+- DiabloLoot, Black Background and All-in-One from clean original files
+- Inputs as original ZIPs and extracted folders
+- Paths containing spaces, an apostrophe and a non-ASCII character
+- Standalone combinations in both orders
+- All-in-One over either current standalone installer output
+- The documented upgrades from DiabloLoot v1.1 and All-in-One v1.0
+
+All successful paths produced both expected chapter EXEs and original
+help files byte for byte. Invalid ZIPs and altered game versions were
+rejected. An existing output directory and its files were preserved.
+The test verified that the original ZIP was unchanged.
+
+Setup installs the patched Win16 games. Use a Win16 runtime to play.

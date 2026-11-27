@@ -1,4 +1,4 @@
-"""Add native Win16 inventory icon variants with colored corner marks."""
+"""Add native Win16 inventory icon variants with visible rarity brackets."""
 
 from dataclasses import dataclass, replace
 from struct import pack, pack_into, unpack_from
@@ -69,21 +69,27 @@ def _add_corner_marks(source, colors):
     for index, (red, green, blue) in zip(free, colors):
         icon[40 + index * 4:44 + index * 4] = bytes((blue, green, red, 0))
 
-    # Inset 10-pixel corners, with a black keyline for light backgrounds.
-    for start, step in ((1, 1), (30, -1)):
-        for y in range(10):
-            for x in range(10):
-                if x >= 4 and y >= 4:
-                    continue
-                pos = (start + step * y) * 32 + start + step * x
-                if pos in occupied:
-                    continue
-                accent = (0 < x <= 2 and 0 < y < 9) or (0 < y <= 2 and 0 < x < 9)
-                color = free[(x + y) % len(colors)] if accent else 0
-                xor_byte = palette_end + pos // 2
-                shift = 4 if pos % 2 == 0 else 0
-                icon[xor_byte] = (icon[xor_byte] & ~(15 << shift)) | (color << shift)
-                icon[mask_start + pos // 8] &= ~(0x80 >> (pos % 8))
+    # Four thick corners plus a low stripe keep color in the available part
+    # of a paper-doll icon when a long name pushes its upper edge out of view.
+    # In the bottom-up bitmap, row zero is the edge nearest the item name.
+    for y in range(32):
+        row_edge = min(y, 31 - y)
+        for x in range(32):
+            column_edge = min(x, 31 - x)
+            bracket = (row_edge < 6 and column_edge < 11
+                       or column_edge < 6 and row_edge < 11)
+            bottom = y < 6 and 8 <= x <= 23
+            pos = y * 32 + x
+            if pos in occupied or not (bracket or bottom):
+                continue
+            accent = (0 < row_edge < 5 and 0 < column_edge < 10
+                      or 0 < column_edge < 5 and 0 < row_edge < 10
+                      or bottom and 0 < y < 5)
+            color = free[(x + y) % len(colors)] if accent else 0
+            xor_byte = palette_end + pos // 2
+            shift = 4 if pos % 2 == 0 else 0
+            icon[xor_byte] = (icon[xor_byte] & ~(15 << shift)) | (color << shift)
+            icon[mask_start + pos // 8] &= ~(0x80 >> (pos % 8))
     return bytes(icon)
 
 

@@ -1,0 +1,27 @@
+Castle of the Winds Redone
+DiabloLoot v1.2
+
+The new rarity brackets leave the native sprite and native curse markings
+intact. The variant generator now adds wider accents on all four corners
+and along the bottom edge. Equipment names still carry the tier.
+
+The resource tests checked every decorated weapon and body-armor icon
+in both chapters. Headless Windows 3.1 inventory tests ran both chapters
+in indexed and 32-bit true-color modes, using the All-in-One v1.1 builds.
+Revealed orange pixels on the equipped Legendary Chain Mail increased
+from 6 to 32 in each chapter. The tested equipped Rare War Hammer had
+232 yellow pixels, up from 56. The pack showed distinct blue, yellow
+and orange accents on all three examples. Indexed mode showed a red
+and yellow pattern for Legendary. The cursed controls hid those accents
+prior to equipping and kept their reveal state and native curse through
+save and reload.
+
+DiabloLoot v1.2 executable SHA-256
+
+CASTLE1.EXE 70c2762f0aa003105752f3709e47e83cccaef31f3ab4346f4a3dc36981b69451
+CASTLE2.EXE f764c2e7f757197a5c2226665009818c7548d2a74e4c29f328342cf7b7b633bc
+
+All-in-One v1.1 executable SHA-256
+
+CASTLE1.EXE 49247755f470b544ba94fbbf90ab016bc681c5b3964b3b82de5c68d8cc7f9071
+CASTLE2.EXE 6eeb093e12c3e5a0b4264708d53f74ed73b238c52de0b12fafada7656d421a7f
