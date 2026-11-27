@@ -73,11 +73,7 @@ def collect_game_files(source, expected):
     return index
 
 
-def install(source, target, release, theme=None):
-    from theme_install import CLASSIC_FILE, THEME_NAMES, theme_output
-
-    if target.exists():
-        raise FileExistsError(f'Choose a new output folder. This folder already exists: {target}')
+def read_install_source(source, release):
     manifest = json.loads((release / 'patches.json').read_text(encoding='utf-8'))
     expected = {}
     for edition in manifest['editions']:
@@ -89,7 +85,16 @@ def install(source, target, release, theme=None):
                     if all(hashes[name] == info['sha256']
                            for name, info in candidate['originals'].items())), None)
     if edition is None:
-        raise ValueError('Use clean Win16 v1.1A files or files installed by the other Redone patch')
+        raise ValueError('These game files do not match a supported build. For a new install, choose the original Win16 v1.1A castl11a.zip')
+    return originals, edition
+
+
+def install(source, target, release, theme=None):
+    from theme_install import CLASSIC_FILE, THEME_NAMES, theme_output
+
+    if target.exists():
+        raise FileExistsError(f'Choose a new output folder. This folder already exists: {target}')
+    originals, edition = read_install_source(source, release)
 
     game_files = {}
     for game in edition['parts']:

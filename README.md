@@ -2,9 +2,9 @@
 
 Five mods for both adventures of the original Win16 *Castle of the Winds* v1.1A, by **RetchERezzed**.
 
-[Download Redone v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.0-refresh)
+[Download Redone v1.1](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.1)
 
-| v1.0 package | What it changes |
+| v1.1 package | What it changes |
 | --- | --- |
 | **All-in-One** | Installs the four gameplay and graphics mods together and includes the Enhanced Interface theme selector |
 | **Diablo Loot** | Adds randomized gear to enemy drops and shops, with blue Enchanted, yellow Rare, and orange Legendary marks. Cursed gear reveals its rarity when equipped |
@@ -15,9 +15,9 @@ Five mods for both adventures of the original Win16 *Castle of the Winds* v1.1A,
 
 ## Install
 
-1. Get the registered Win16 v1.1A archive with both games and their Help files. [Original game archive at Boxedwine](https://www.boxedwine.org/app/castleofthewindows/)
-2. On 64-bit Windows, open the Windows Setup for your chosen package. It accepts the original ZIP or an extracted game folder and runs without Python
-3. Select a new destination and choose **Install**
+1. Get the original, working registered Win16 v1.1A archive (`castl11a.zip`). It contains both games and their Help files. [Original game archive at Boxedwine](https://www.boxedwine.org/app/castleofthewindows/)
+2. On 64-bit Windows, open Windows Setup and click **Choose ZIP…** to select `castl11a.zip` as downloaded. If you already extracted the archive, click **Choose folder…** and select the folder containing both `CASTLE1.EXE` and `CASTLE2.EXE` and their matching `.HLP` files
+3. Setup checks the selected files. Once it confirms both games, keep the proposed destination or choose a new one and click **Install**. Click **Open install folder** when Setup finishes
 4. Run `CASTLE1.EXE` for *A Question of Vengeance* or `CASTLE2.EXE` for *Lifthransir's Bane* in a Win16 runtime
 
 For a scripted install, extract a portable ZIP and run `python3 apply_redone.py castl11a.zip Castle-Redone`. For Graphics Overhaul or More Equipment on the original release, the BPS archives provide per-game apply and restore patches and executable checksums.
@@ -41,5 +41,7 @@ The standalone Enhanced Interface setup defaults to Warm Stone. All-in-One defau
 [View the individual 640 × 480 screenshots](docs/verification/screenshots), including the original title screen and a screenshot for each mod.
 
 ## Verification
+
+[v1.1 installer verification](docs/verification/Redone-v1.1.md) covers source checks, installation, and binary comparisons with v1.0.
 
 See the [updated v1.0 test coverage and checksums](docs/verification/Redone-v1.0-refresh.md), the [original v1.0 test record](docs/verification/Redone-v1.0.md), and the [development notes for the earlier modular packages](docs/Building.md).

@@ -12,10 +12,12 @@ import tkinter as tk
 from tkinter import filedialog, ttk
 from zipfile import BadZipFile
 
-from apply_diabloloot import apply_delta, install
+from apply_diabloloot import apply_delta, install, read_install_source
 from theme_install import THEME_INDEX, THEME_NAMES, set_theme
 
 ASSETS = Path(__file__).resolve().with_name('redone-package')
+SOURCE_PROMPT = 'For a new install, select the original Win16 v1.1A archive (castl11a.zip).'
+SOURCE_READY = 'Both games and Help files verified. Check the destination and click Install.'
 
 
 def next_destination(parent, name):
@@ -27,14 +29,23 @@ def next_destination(parent, name):
     return candidate
 
 
-def validate_paths(source_text, target_text):
+def source_path(source_text):
     source_text = source_text.strip().strip('"')
-    target_text = target_text.strip().strip('"')
     if not source_text:
-        raise ValueError('Choose the original v1.1A ZIP or game folder')
+        raise ValueError('Choose the original v1.1A ZIP (castl11a.zip) or game folder')
     source = Path(source_text).expanduser().resolve()
     if not source.exists():
         raise ValueError('Choose the original ZIP or an existing game folder')
+    return source
+
+
+def check_source(source_text, assets):
+    read_install_source(source_path(source_text), assets)
+
+
+def validate_paths(source_text, target_text):
+    source = source_path(source_text)
+    target_text = target_text.strip().strip('"')
     if not target_text:
         raise ValueError('Choose a destination folder')
     target = Path(target_text).expanduser().resolve()
@@ -55,7 +66,7 @@ def friendly_error(error):
     if isinstance(error, ValueError):
         message = str(error).rstrip('.')
         if message.startswith(('Missing ', 'Unexpected or duplicate ')):
-            return f'{message}. Choose the Win16 v1.1A ZIP or a compatible Redone install folder.'
+            return f'{message}. Try the original castl11a.zip or choose the folder with both games and Help files.'
         return message + '.'
     if isinstance(error, OSError):
         return 'Setup could not read the source or write the destination. Check the paths and available disk space.'
@@ -71,6 +82,7 @@ class SetupWindow:
         self.busy = False
         self.installed = None
         self.error = None
+        self.rejected_source = None
         self.theme_names = {name: key for key, name in THEME_NAMES.items()}
         self.with_themes = (assets / THEME_INDEX).is_file()
         default_theme = settings.get('default_theme', 'classic')
@@ -78,7 +90,7 @@ class SetupWindow:
         self.manage_theme = tk.BooleanVar(value=False)
 
         root.title(f'{self.name} Setup')
-        root.minsize(680, 490 if self.with_themes else 395)
+        root.minsize(705, 505 if self.with_themes else 410)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(1, weight=1)
         root.protocol('WM_DELETE_WINDOW', self.close)
@@ -107,7 +119,8 @@ class SetupWindow:
         self.target = tk.StringVar(value=str(next_destination(install_parent, self.folder_name)))
         ttk.Label(form, text='1. Choose the game files', style='Step.TLabel').grid(
             row=0, column=0, columnspan=3, sticky='w')
-        ttk.Label(form, text='Use the original Win16 v1.1A ZIP or a compatible Redone folder.',
+        ttk.Label(form, text='Choose the original Win16 v1.1A ZIP (castl11a.zip) or a compatible Redone folder.\n'
+                 'Using extracted originals? Choose the folder with CASTLE1.EXE, CASTLE2.EXE, and both .HLP files.',
                   style='Muted.TLabel').grid(row=1, column=0, columnspan=3, sticky='w', pady=(2, 5))
 
         self.source_entry = ttk.Entry(form, textvariable=self.source)
@@ -126,7 +139,7 @@ class SetupWindow:
         target_button = ttk.Button(form, text='Change folder…', command=self.select_destination)
         target_button.grid(row=5, column=2, padx=(8, 0))
         self.inputs = (self.source_entry, zip_button, folder_button, target_entry, target_button)
-        self.status = tk.StringVar(value='The patched games need a Win16 runtime to play.')
+        self.status = tk.StringVar(value=SOURCE_PROMPT)
         status_row = 6
         if self.with_themes:
             ttk.Label(form, text='3. Choose an interface theme', style='Step.TLabel').grid(
@@ -135,7 +148,7 @@ class SetupWindow:
                                   values=tuple(THEME_NAMES.values()), width=20)
             themes.grid(row=7, column=0, sticky='w')
             mode = ttk.Checkbutton(form, text='Change the theme in an existing installation',
-                                   variable=self.manage_theme, command=self.update_action)
+                                   variable=self.manage_theme, command=self.change_mode)
             mode.grid(row=8, column=0, columnspan=3, sticky='w', pady=(6, 0))
             self.inputs += (themes, mode)
             self.theme_combo = themes
@@ -153,29 +166,63 @@ class SetupWindow:
         self.action.pack(side='right')
         ttk.Button(footer, text='Close', command=self.close).pack(side='right', padx=(0, 8))
         root.bind('<Return>', lambda _event: self.action.invoke())
-        self.source.trace_add('write', self.update_action)
+        self.source.trace_add('write', self.source_changed)
         self.target.trace_add('write', self.update_action)
         self.update_action()
         self.source_entry.focus_set()
 
     def update_action(self, *_args):
         manage = self.with_themes and self.manage_theme.get()
-        ready = bool(self.source.get().strip() and (manage or self.target.get().strip())) and not self.busy
+        source = self.source.get()
+        ready = (not self.busy and bool(source.strip()) and
+                 (manage or (source != self.rejected_source and bool(self.target.get().strip()))))
         if self.with_themes and not self.busy:
             for widget in self.destination_widgets:
                 widget.configure(state='disabled' if manage else 'normal')
+        if not self.installed:
+            self.action.configure(text='Apply theme' if manage else 'Install')
         self.action.configure(state='normal' if ready or self.installed else 'disabled')
+
+    def source_changed(self, *_args):
+        self.error = self.rejected_source = None
+        self.notice.configure(style='Status.TLabel')
+        if self.with_themes and self.manage_theme.get():
+            prompt = 'Choose the installed game folder, close both games, and click Apply theme.'
+        else:
+            prompt = 'Click Install to check the selected files and install both games.' if self.source.get().strip() else SOURCE_PROMPT
+        self.status.set(prompt)
+        self.update_action()
+
+    def change_mode(self):
+        if self.source.get().strip():
+            self.select_source(self.source.get())
+        else:
+            self.source_changed()
+
+    def select_source(self, selected):
+        self.source.set(selected)
+        if self.with_themes and self.manage_theme.get():
+            return True
+        try:
+            check_source(selected, self.assets)
+        except (BadZipFile, OSError, RuntimeError, ValueError) as error:
+            self.rejected_source = selected
+            self.show_error(error)
+            self.update_action()
+            return False
+        self.status.set(SOURCE_READY)
+        return True
 
     def select_zip(self):
         filename = filedialog.askopenfilename(parent=self.root, title='Choose the game ZIP',
                                              filetypes=[('ZIP archives', '*.zip'), ('All files', '*')])
         if filename:
-            self.source.set(filename)
+            self.select_source(filename)
 
     def select_source_folder(self):
         folder = filedialog.askdirectory(parent=self.root, title='Choose the game files folder')
         if folder:
-            self.source.set(folder)
+            self.select_source(folder)
 
     def select_destination(self):
         folder = filedialog.askdirectory(parent=self.root, title='Choose a parent folder for the new install')
@@ -285,9 +332,13 @@ def verify_install(args, settings):
             window.manage_theme.set(args.manage)
             window.update_action()
             assert str(window.action.cget('state')) == 'disabled'
-            window.source.set(args.source)
             window.target.set(args.destination)
+            if not window.select_source(args.source):
+                assert str(window.action.cget('state')) == 'disabled'
+                raise window.error
             assert str(window.action.cget('state')) == 'normal'
+            if not args.manage:
+                assert window.status.get() == SOURCE_READY
             window.action.invoke()
             deadline = time.monotonic() + 25
             while window.busy and time.monotonic() < deadline:

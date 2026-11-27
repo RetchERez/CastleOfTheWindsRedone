@@ -14,9 +14,12 @@ EDITIONS = {
     'diabloloot': ('DiabloLoot', 'v1.2'),
     'black-background': ('Black Background', 'v1.0'),
     'all-in-one': ('All-in-One', 'v1.1'),
-    'more-monsters': ('More Monsters', 'v1.0'),
-    'all-in-one-full': ('All-in-One', 'v1.0'),
-    'enhanced-interface': ('Enhanced Interface', 'v1.0'),
+    'diablo-loot': ('Diablo Loot', 'v1.1'),
+    'more-monsters': ('More Monsters', 'v1.1'),
+    'more-equipment': ('More Equipment', 'v1.1'),
+    'graphics-overhaul': ('Graphics Overhaul', 'v1.1'),
+    'all-in-one-full': ('All-in-One', 'v1.1'),
+    'enhanced-interface': ('Enhanced Interface', 'v1.1'),
 }
 
 
