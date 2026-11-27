@@ -14,6 +14,7 @@ HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE.parent), str(HERE.parents[1])]
 from ne_patch import relocate_segment
 from ne_research import Executable, word
+from build import redirect
 
 PALETTE = json.loads((HERE / 'theme_palette.json').read_text(encoding='utf-8'))
 THEMES = ('warm', 'dark', 'classic')
@@ -62,6 +63,7 @@ INVENTORY_IMPORTS = (
 )
 INVENTORY_TARGETS = (('USER', 85), ('GDI', 27), ('USER', 84))
 DOLL_TARGET = ('GDI', 123)
+LABEL_LAYOUT = 'long-label-layout'
 DOLL_IMPORTS = (('GDI', 30), ('GDI', 175), ('GDI', 39), ('GDI', 123), ('GDI', 176))
 DIALOG, FILL, DRAWTEXT, TEXTOUT = (('USER', 87), ('USER', 81), ('USER', 85), ('GDI', 33))
 TABBED = ('USER', 196)
@@ -115,7 +117,7 @@ def assemble(exe, segment, theme, assembler):
     hook_names = (('USER', 57),) if classes else INVENTORY_TARGETS
     import_names = CLASS_IMPORTS if classes else INVENTORY_IMPORTS
     if doll:
-        hook_names += (DOLL_TARGET,)
+        hook_names += (DOLL_TARGET, LABEL_LAYOUT)
         import_names += DOLL_IMPORTS
     return assemble_blob(exe, 'theme.asm', values, hook_names, import_names, assembler)
 
@@ -256,13 +258,10 @@ def build(path, part, theme, assembler='nasm'):
             body += extra
             hooks.update(window_hooks)
             imports.update(window_imports)
+        label_layout = hooks.pop(LABEL_LAYOUT, None)
         image, code = redirect_imports(image, exe, segment, hooks)
-        if number == primary[1]:
-            # Keep long equipment names below the existing 32-pixel icon.
-            # The native clipped rectangle and full Inspect name still apply.
-            if code[0x03c4:0x03c6] != b'\x73\x1f':
-                raise ValueError('Unexpected equipment label rectangle branch')
-            code[0x03c4] = 0xeb
+        if label_layout is not None:
+            redirect(code, 0x03c6, bytes.fromhex('8b46cc 2b46fa 8946c8 eb14'), label_layout)
         image = relocate_segment(image, number, code + body, {}, imports)
     # Segment 2 originally occupies the NE application's contiguous fast-load
     # region. It remains a preload segment, but the Windows 3.1 loader must

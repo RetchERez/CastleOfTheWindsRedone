@@ -131,7 +131,7 @@ desktop_return:
 %else
     dw draw_text, rectangle, draw_icon
 %if DOLL_HOOK
-    dw doll_metafile
+    dw doll_metafile, long_label_layout
 %endif
     dw set_mode, set_ink, text_original, restore_ink, restore_mode
     dw create_brush, select_brush, get_white_brush, restore_special_brush
@@ -294,6 +294,20 @@ draw_icon_original:
     retf 8
 
 %if DOLL_HOOK
+; Reserve room for the icon when a long name would otherwise start inside it.
+; Keep the game's lower-margin alignment for ordinary two- and three-line names.
+long_label_layout:
+    mov ax, [bp - 0x34]
+    sub ax, [bp - 6]
+    mov dx, [bp - 0x38]
+    sub dx, 7
+    cmp ax, dx
+    jge long_label_write
+    mov ax, dx
+long_label_write:
+    mov [bp - 0x38], ax
+    jmp 0x03e5
+
 doll_metafile:
     push bp
     mov bp, sp
