@@ -6,7 +6,8 @@ import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-CLASSIC_FILE = 'Classic.bin'
+CLASSIC_FILE = 'Classic.bak'
+LEGACY_CLASSIC_FILE = 'Classic.bin'
 THEME_NAMES = {'warm': 'Warm Stone', 'dark': 'Dark Slate', 'classic': 'Classic'}
 THEME_INDEX = 'interface.json'
 
@@ -50,6 +51,9 @@ def set_theme(installation, theme, assets, apply_delta):
         if executable.is_symlink():
             raise ValueError('Choose an installation with ordinary game files')
         backup = executable.with_name(f'CASTLE{chapter} ' + CLASSIC_FILE)
+        legacy = executable.with_name(f'CASTLE{chapter} ' + LEGACY_CLASSIC_FILE)
+        if not backup.is_file() and legacy.is_file():
+            backup = legacy
         previous = executable.read_bytes()
         original = backup.read_bytes() if backup.is_file() else previous
         classic_hash = digest(original)
