@@ -2,7 +2,7 @@
 
 Five mods for both adventures of the original Win16 *Castle of the Winds* v1.1A, by **RetchERezzed**.
 
-Every v1.1 package adds **REDONE** in gold and **By Retch** in smaller white lettering on one line below the original title logo.
+Every v1.1 package adds **REDONE** in gold and **BY RETCH** in bold white on one line below the original title logo.
 
 [Download Redone v1.1](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.1)
 

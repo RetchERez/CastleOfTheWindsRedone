@@ -22,12 +22,13 @@ class TitleArtTests(unittest.TestCase):
                 restored = bytearray(painted)
                 self.assertEqual(old.offset, new.offset)
                 self.assertEqual(old.body[40:104], new.body[40:104])
-                rows = zip(decode_rows(old.body), decode_rows(new.body), strict=True)
+                original_rows = decode_rows(old.body)
+                rows = zip(original_rows, decode_rows(new.body), strict=True)
                 changes = [(y, original, replacement) for y, (previous, current) in enumerate(rows)
                            for original, replacement in zip(previous, current, strict=True)
                            if original != replacement]
                 self.assertGreater(len(changes), 40)
-                self.assertTrue(all(212 <= y < 230 and original == 0 for y, original, _ in changes))
-                self.assertEqual({pixel for _, _, pixel in changes}, {3, 7, 11, 15})
+                self.assertTrue(all(210 <= y < 230 and original == 0 for y, original, _ in changes))
+                self.assertEqual({pixel for _, _, pixel in changes}, {3, 11, 15})
                 restored[old.offset:old.offset + len(old.body)] = old.body
                 self.assertEqual(bytes(restored), data)

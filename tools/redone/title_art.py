@@ -1,6 +1,8 @@
 """Add Redone lettering to the original Win16 title bitmap."""
 
 from hashlib import sha256
+import json
+from pathlib import Path
 from struct import pack_into, unpack_from
 
 from color_resources import _read_resources, _word
@@ -9,20 +11,7 @@ from color_resources import _read_resources, _word
 ORIGINAL_SPLASH = 'f98278467f58ed28aaa836899719a3dc29d1c5a124c801ef33b7bc53687d7181'
 
 
-GLYPHS = {
-    'R': ('####.', '.#..#', '.#..#', '.###.', '.#.#.', '.#..#', '##..#'),
-    'E': ('#####', '.#..#', '.#.#.', '.###.', '.#.#.', '.#..#', '#####'),
-    'D': ('####.', '.#..#', '.#..#', '.#..#', '.#..#', '.#..#', '####.'),
-    'O': ('.###.', '#...#', '#...#', '#...#', '#...#', '#...#', '.###.'),
-    'N': ('##..#', '.##.#', '.##.#', '.#.##', '.#.##', '.#..#', '##..#'),
-    'B': ('####.', '.#..#', '.#..#', '.###.', '.#..#', '.#..#', '####.'),
-    'y': ('.....', '.....', '#...#', '#...#', '.####', '....#', '.###.'),
-    'e': ('.....', '.....', '.###.', '#...#', '#####', '#....', '.###.'),
-    't': ('..#..', '..#..', '.####', '..#..', '..#..', '..#..', '...##'),
-    'c': ('.....', '.....', '.###.', '#...#', '#....', '#...#', '.###.'),
-    'h': ('#....', '#....', '#.##.', '##..#', '#...#', '#...#', '#...#'),
-    ' ': ('.....',) * 7,
-}
+WORDMARK = Path(__file__).with_name('title_wordmark.json')
 
 
 def decode_rows(body):
@@ -101,32 +90,23 @@ def encode_rows(rows):
     return stream
 
 
-def letter(rows, text, left, top, width, height, tracking, face, shade):
-    points = []
-    for index, symbol in enumerate(text):
-        start = left + index * (width + tracking)
-        glyph = GLYPHS[symbol]
-        for y in range(height):
-            line = glyph[y * 7 // height]
-            for x in range(width):
-                if line[x * 5 // width] == '#':
-                    points.append((start + x, top + y))
-    if any(rows[y][x] or rows[y + 1][x + 1] for x, y in points):
-        raise ValueError('Redone lettering would overlap original splash artwork')
-    for x, y in points:
-        rows[y + 1][x + 1] = shade
-    for x, y in points:
-        rows[y][x] = face
-
-
 def paint_bitmap(original):
     rows = decode_rows(original)
-    # Center the two words as a group on the original logo's 198px centerline.
-    # Both sit on the same baseline, with the smaller byline offset by a 12px gap.
-    letter(rows, 'REDONE', 105, 212, 15, 17, 3, 11, 3)
-    letter(rows, 'By Retch', 222, 216, 7, 13, 2, 15, 7)
-    stream = encode_rows(rows)
+    overlay = json.loads(WORDMARK.read_bytes())
+    shades = {int(index): bytes.fromhex(rgb) for index, rgb in overlay['palette'].items()}
     body = bytearray(original[:104])
+    for index, rgb in shades.items():
+        start = 40 + index * 4
+        if body[start:start + 3] != rgb[::-1]:
+            raise ValueError('Redone lettering must use the original VGA palette')
+    for y, marks in enumerate(overlay['rows'], overlay['top']):
+        for x, mark in enumerate(marks, overlay['left']):
+            color = int(mark, 16)
+            if color:
+                if color not in shades or rows[y][x]:
+                    raise ValueError('Redone lettering would overlap original splash artwork')
+                rows[y][x] = color
+    stream = encode_rows(rows)
     pack_into('<I', body, 20, len(stream))
     body.extend(stream)
     if len(body) > len(original) or decode_rows(body) != rows:

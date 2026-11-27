@@ -10,6 +10,6 @@ On 64-bit Windows, all six v1.1 setup executables ran with their windows withdra
 - Compared Warm Stone and Dark Slate All-in-One output with v1.0 and verified in-place restoration to Classic
 - Verified new `.bak` theme backups and restoration from legacy `.bin` backups, then upgraded the restored v1.0 install to v1.1
 - Verified error messages and destination protection with a malformed ZIP, a missing Help file, an altered game executable, and an existing destination
-- Captured the actual title screens in Windows 3.1 on a private DOSBox display. [Part I](screenshots/Redone-Title-Part-I.png) · [Part II](screenshots/Redone-Title-Part-II.png)
+- Captured the actual title screens and loaded an existing save from each in Windows 3.1 on a private DOSBox display. [Part I](screenshots/Redone-Title-Part-I.png) · [Part II](screenshots/Redone-Title-Part-II.png)
 
 Game behavior is covered by the [original v1.0 checks](Redone-v1.0.md) and the [v1.0 refresh checks](Redone-v1.0-refresh.md). The title changes preserve the original game code and artwork outside the blank band below the blue logo. The v1.1 checks did not rerun the campaigns.
