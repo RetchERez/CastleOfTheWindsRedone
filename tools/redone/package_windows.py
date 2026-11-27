@@ -36,6 +36,7 @@ def bundle(package_root, destination, edition):
         config = {'name': name, 'version': version, 'folder': name}
         if (theme_index := package / 'interface.json').is_file():
             shutil.copyfile(theme_index, assets / theme_index.name)
+            shutil.copytree(SOURCE / 'theme_previews', assets / 'theme_previews')
             config['default_theme'] = json.loads(theme_index.read_bytes())['default_theme']
         (assets / 'setup.json').write_text(json.dumps({
             **config,

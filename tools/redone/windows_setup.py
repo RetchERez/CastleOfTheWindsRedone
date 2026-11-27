@@ -85,6 +85,12 @@ class SetupWindow:
         self.rejected_source = None
         self.theme_names = {name: key for key, name in THEME_NAMES.items()}
         self.with_themes = (assets / THEME_INDEX).is_file()
+        self.preview_window = None
+        self.preview_images = {key: assets / 'theme_previews' / f'{key}.png'
+                               for key in ('classic', 'warm', 'dark')}
+        self.preview_comparison = assets / 'theme_previews' / 'comparison.png'
+        self.has_previews = self.with_themes and all(path.is_file() for path in
+                                                    (self.preview_comparison, *self.preview_images.values()))
         default_theme = settings.get('default_theme', 'classic')
         self.theme = tk.StringVar(value=THEME_NAMES[default_theme])
         self.manage_theme = tk.BooleanVar(value=False)
@@ -147,6 +153,10 @@ class SetupWindow:
             themes = ttk.Combobox(form, textvariable=self.theme, state='readonly',
                                   values=tuple(THEME_NAMES.values()), width=20)
             themes.grid(row=7, column=0, sticky='w')
+            if self.has_previews:
+                preview = ttk.Button(form, text='Preview themes…', command=self.show_theme_previews)
+                preview.grid(row=7, column=1, columnspan=2, sticky='w', padx=(8, 0))
+                self.inputs += (preview,)
             mode = ttk.Checkbutton(form, text='Change the theme in an existing installation',
                                    variable=self.manage_theme, command=self.change_mode)
             mode.grid(row=8, column=0, columnspan=3, sticky='w', pady=(6, 0))
@@ -312,6 +322,57 @@ class SetupWindow:
         except OSError:
             self.notice.configure(style='Error.TLabel')
             self.status.set(f'Open this folder in File Explorer: {self.installed}')
+
+    def show_theme_previews(self):
+        if not self.has_previews or self.busy:
+            return None
+        if self.preview_window is not None and self.preview_window.winfo_exists():
+            self.preview_window.lift()
+            return self.preview_window
+
+        window = tk.Toplevel(self.root)
+        window.withdraw()
+        window.title('Interface theme preview')
+        window.transient(self.root)
+        window.resizable(False, False)
+
+        tabs = ttk.Notebook(window)
+        tabs.pack(padx=12, pady=(12, 0))
+        images = []
+        pages = {'Compare': self.preview_comparison,
+                 **{THEME_NAMES[key]: path for key, path in self.preview_images.items()}}
+        try:
+            for caption, path in pages.items():
+                page = ttk.Frame(tabs)
+                photo = tk.PhotoImage(master=window, file=str(path))
+                images.append(photo)
+                ttk.Label(page, image=photo).pack()
+                tabs.add(page, text=caption)
+        except tk.TclError:
+            window.destroy()
+            self.show_error(ValueError('The theme screenshots could not be opened.'))
+            return None
+        window.photos = images
+        tabs.enable_traversal()
+
+        def use_theme(name):
+            if not self.busy:
+                self.theme.set(name)
+            window.destroy()
+
+        actions = ttk.Frame(window, padding=12)
+        actions.pack(fill='x')
+        for key in self.preview_images:
+            name = THEME_NAMES[key]
+            ttk.Button(actions, text=f'Use {name}', command=lambda name=name: use_theme(name)).pack(
+                side='left', padx=(0, 8))
+        ttk.Button(actions, text='Close', command=window.destroy).pack(side='right')
+        window.bind('<Escape>', lambda _event: window.destroy())
+
+        self.preview_window = window
+        if self.root.state() != 'withdrawn':
+            window.deiconify()
+        return window
 
     def show_licenses(self):
         window = tk.Toplevel(self.root)

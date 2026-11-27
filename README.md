@@ -36,6 +36,8 @@ Choose a new destination at each step. When selecting a previous install, choose
 
 The standalone Enhanced Interface setup defaults to Warm Stone. All-in-One defaults to Classic. To switch themes, close both games and rerun Setup with **Change the theme in an existing installation** selected.
 
+Select **Preview themes…** to compare Classic, Warm Stone, and Dark Slate before applying a theme. [View all three themes side by side](tools/redone/theme_previews/comparison.png)
+
 Keep the `CASTLE1 Classic.bak` and `CASTLE2 Classic.bak` files beside the game executables. Setup uses these backups to switch themes and restore Classic. v1.1 Updated preserves the Redone title when it switches a supported older installation and replaces its legacy `.bin` backups with `.bak` files. It also recognizes both chapters in the Collection repack's `Win3.1` folder.
 
 ## In-game preview
