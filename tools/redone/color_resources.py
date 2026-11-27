@@ -139,6 +139,13 @@ def add_loot_icons(executable: bytes, part: int):
     Call after all code segments have been written. Move the resource block past
     code and use 32-byte resource sectors to fit both titles with the additions.
     """
+    mapping = loot_icon_mapping()
+    return repack_resources(executable, part, 2 * len(mapping),
+                            lambda types: _add_variants(types, mapping)), mapping
+
+
+def repack_resources(executable, part, additional_records, edit):
+    """Repack the NE resource directory after appending resources."""
     ne = unpack_from('<I', executable, 0x3C)[0]
     if (executable[:2], executable[ne:ne + 2]) != (b'MZ', b'NE'):
         raise ValueError('Expected a Windows NE executable')
@@ -155,9 +162,8 @@ def add_loot_icons(executable: bytes, part: int):
            for item, following in zip(original, original[1:])):
         raise ValueError('The original resource block is not contiguous')
 
-    mapping = loot_icon_mapping()
-    _add_variants(types, mapping)
-    new_entries_size = 2 * len(mapping) * 12
+    edit(types)
+    new_entries_size = additional_records * 12
     segment_paragraph = 1 << _word(executable, ne + 0x32)
     header_growth = _align(new_entries_size, segment_paragraph)
     new_table_end = table_end + header_growth
@@ -206,4 +212,4 @@ def add_loot_icons(executable: bytes, part: int):
             result.extend(b'\0' * (size - len(item.body)))
     table.extend(b'\0\0' + resource_names)
     result[table_start:table_start + len(table)] = table
-    return bytes(result), mapping
+    return bytes(result)

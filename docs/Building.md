@@ -40,3 +40,13 @@ py -3 tools/redone/package_windows.py dist dist/windows
 ```
 
 The resulting three EXEs bundle the setup runtime, the corresponding patch data, and runtime license notices. The original game files stay in your own source folder.
+
+## Build the More Monsters preview
+
+Put copies of both installed All-in-One v1.1 EXEs in `stable-all-in-one`. Keep the original EXEs and help files in `private-inputs`. Build the preview packages with the same Python, Capstone and NASM setup.
+
+```sh
+python tools/redone/more_monsters/build_packages.py private-inputs stable-all-in-one preview-dist
+```
+
+This builds the standalone More Monsters package and the All-in-One preview package. On 64-bit Windows, pass `preview-dist` to `package_windows.py` to bundle their Windows installers.

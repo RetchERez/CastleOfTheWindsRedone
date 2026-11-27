@@ -1,0 +1,56 @@
+Castle of the Winds I & II: Redone
+More Monsters v0.1 Preview and All-in-One v1.2 Preview
+
+Native spawning
+
+The Centipede and Beetle were added as two independent creature types in
+each game. The allocator, terrain checks, population budgets, and ordinary
+spawn positions remain native. Tested fresh procedural generation, active
+timed respawns and off-level return repopulation. Deterministic witnesses
+covered all 16 allowed floor/species combinations across both chapters.
+The protected floors, scripted boss placement, no-tile case, population
+cap and one-live-per-species cap all passed. Native clone still works.
+Changing creature construction can change later random results inside an
+existing spawn budget, such as the stock optional second timed spawn.
+
+Combat and persistence
+
+Native attack tests exercised the Centipede's 1d4 physical bite and
+weaker native poison and the Beetle's 1d6 physical bite. Both monster
+types resolved to their own original 32×32 icon and their full names.
+All 1,079 preexisting native strings matched the original in each game.
+
+Four native generation seeds produced positive copper drops. The actors
+and their copper were moved into repeatable adjacent test encounters,
+then opened in Windows 3.1 under a private DOSBox display. In both
+chapters and both builds, each actor kept its type, HP and attacks after
+saving and reopening. The player killed it, received the correct XP,
+collected its copper with Get, and kept the copper after saving and
+reopening again. Loot was native copper and varied with dungeon depth.
+
+Part One Giant Centipede — 4 XP, 152 copper in the tested encounter
+Part One Giant Beetle — 6 XP, 176 copper in the tested encounter
+Part Two Giant Centipede — 4 XP, 1043 copper in the tested encounter
+Part Two Giant Beetle — 6 XP, 1200 copper in the tested encounter
+
+The new designs are tuned against the original Viper and Giant Red Ant.
+The Centipede has lower HP, lower direct damage and lower poison
+magnitude than the Viper. The Beetle has higher HP and defense than the
+Giant Red Ant, with lower damage and a slower turn rate. New monsters
+replace candidates in a similar ordinary XP range and appear only on
+the listed floors.
+
+Stacked regression
+
+The combined executables passed the same spawn and combat checkpoints.
+The DiabloLoot native rewards and shop stocking checks passed as well.
+
+Standalone More Monsters EXE SHA-256
+
+CASTLE1.EXE 6aab553a06a9b6fc88ea319ac056ce820d28d2719499bf0ff05ebabba8235fd0
+CASTLE2.EXE d0bbcce1e74876986a2de3e1c00769aebe96b53338088f3faaa280d8bcaaba50
+
+All-in-One preview EXE SHA-256
+
+CASTLE1.EXE 66a5f7632dc18ec085624e83fdba27744674153097032bf4b3e8f374fb2c685d
+CASTLE2.EXE 03fa1ef4712f5214c6ebf24df01c6f6d1c5db5cec3eca986fdf2de48af57b0a4

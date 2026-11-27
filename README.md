@@ -8,6 +8,8 @@ Modular patches for both chapters of the original 16-bit *Castle of the Winds* v
 | [DiabloLoot v1.2](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/diabloloot-v1.2) | Adds randomized gear to enemy drops and shop stock, with broader, color-coded rarity marks. |
 | [Black Background v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/black-background-v1.0) | Makes unexplored map cells black while keeping explored tiles and the interface in their original colors. |
 
+The optional [More Monsters v0.1 Preview](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/more-monsters-v0.1) adds Giant Centipedes and Giant Beetles. [All-in-One v1.2 Preview](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/all-in-one-v1.2-preview) includes all three patches. All-in-One v1.1 remains the stable download.
+
 ## Install
 
 1. Get the original Win16 v1.1A `castl11a.zip` with both games and their help files. [Original game archive at Boxedwine](https://www.boxedwine.org/app/castleofthewindows/)
@@ -31,5 +33,6 @@ Both standalone patches can be stacked in either order. Give the second installe
 
 - [DiabloLoot test results](docs/verification/DiabloLoot.txt) cover kills, drops, pickup, reload, curses, and shop stocking and restocking in each chapter. [DiabloLoot v1.2 results](docs/verification/DiabloLoot%20v1.2.txt) cover the more visible rarity marks.
 - [Black Background test results](docs/verification/Black%20Background.txt) compare the original and patched screens in both chapters.
+- [More Monsters test results](docs/verification/More-Monsters.txt) cover the native spawn paths, combat and save/load in both chapters.
 
 See the [build instructions](docs/Building.md) to produce the patches from your own original files.

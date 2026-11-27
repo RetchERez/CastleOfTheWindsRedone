@@ -87,7 +87,7 @@ class SetupWindow:
 
         header = tk.Frame(root, background='#202936', padx=24, pady=15)
         header.grid(row=0, column=0, sticky='ew')
-        tk.Label(header, text='Castle of the Winds Redone', font=('Segoe UI', 19, 'bold'),
+        tk.Label(header, text='Castle of the Winds I & II: Redone', font=('Segoe UI', 19, 'bold'),
                  foreground='#ffffff', background='#202936', anchor='w').pack(fill='x')
         tk.Label(header, text=f'{self.name}  •  {settings["version"]}  •  Both chapters',
                  font=('Segoe UI', 10), foreground='#ead1a8', background='#202936',

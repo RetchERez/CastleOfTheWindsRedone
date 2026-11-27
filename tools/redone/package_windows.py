@@ -14,6 +14,8 @@ EDITIONS = {
     'diabloloot': ('DiabloLoot', 'v1.2'),
     'black-background': ('Black Background', 'v1.0'),
     'all-in-one': ('All-in-One', 'v1.1'),
+    'more-monsters': ('More Monsters', 'v0.1'),
+    'all-in-one-preview': ('All-in-One Preview', 'v1.2'),
 }
 
 
@@ -50,7 +52,7 @@ VSVersionInfo(
     StringStruct('FileDescription', 'Castle of the Winds Redone {name} Setup'),
     StringStruct('FileVersion', '{version[1:]}'),
     StringStruct('OriginalFilename', '{asset_name}.exe'),
-    StringStruct('ProductName', 'Castle of the Winds Redone'),
+    StringStruct('ProductName', 'Castle of the Winds I & II: Redone'),
     StringStruct('ProductVersion', '{version[1:]}')
   ])]), VarFileInfo([VarStruct('Translation', [1033, 1200])])]
 )
@@ -73,5 +75,9 @@ if __name__ == '__main__':
     if sys.platform != 'win32' or sys.maxsize <= 2**32:
         parser.error('Build the Windows setup on 64-bit Windows')
     args.destination.mkdir(parents=True, exist_ok=True)
-    for edition in args.edition or EDITIONS:
+    available = [edition for edition in EDITIONS
+                 if (args.packages / edition / 'patches.json').is_file()]
+    if not args.edition and not available:
+        parser.error('No patch manifests found in the package directory')
+    for edition in args.edition or available:
         bundle(args.packages.resolve(), args.destination.resolve(), edition)
