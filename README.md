@@ -1,4 +1,4 @@
-# Castle of the Winds Redone
+# Castle of the Winds I & II: Redone
 
 Modular patches for both chapters of the original 16-bit *Castle of the Winds* v1.1A, by **RetchERezzed**.
 
@@ -20,6 +20,8 @@ For Linux or scripted installs, extract the portable patch ZIP and run `python3 
 Both standalone patches can be stacked in either order. Give the second installer the output folder from the first and choose a new destination. All-in-One also accepts the output from either standalone mod. Copy your saves separately into the matching chapter's new folder.
 
 ## In-game previews
+
+![Nine screenshots from the two chapters of All-in-One v1.1 showing dungeons, loot, rarity marks, and shops](docs/verification/All-in-One-Gameplay-Collage.png)
 
 | DiabloLoot | Black Background |
 | --- | --- |
