@@ -1,0 +1,29 @@
+Castle of the Winds Redone
+Black Background v1.0 verification
+
+Both original and patched games ran through Windows 3.1 in DOSBox on an
+off-screen Linux display. Each comparison used the same game state in
+the original executable and in the standalone Black Background executable.
+Part One used a controlled unexplored region in a saved corridor. Part
+Two used existing unexplored space in a saved dungeon.
+
+Part One: 18,432 pixels changed. Each changed pixel went from RGB
+(255,255,255) to (0,0,0). All differences fell within the map pane.
+
+Part Two: 65,762 pixels changed. Each changed pixel went from RGB
+(255,255,255) to (0,0,0). All differences fell within the map pane.
+
+The patch changes the stock brush selected by the unexplored-cell
+renderer. Each Black Background executable differs by one byte from its
+unmodified v1.1A counterpart. Explored tiles, walls, creatures, controls,
+and the status and message areas match the original screenshots.
+
+Standalone executable SHA-256
+
+CASTLE1.EXE 55fc797a52cf156a302389217c44120c5716cd1f1018d8ced557628ecfc5fc93
+CASTLE2.EXE 6e7be1be540c59a7eaac2b365562d843caacfc530a201c27037654badb3d20d5
+
+DiabloLoot and Black Background installed together
+
+CASTLE1.EXE 9823693b54d4e8560fe5621b657eca69c1a4daae8815e5f544711084f5e9e9bd
+CASTLE2.EXE bddbaf3c6a9157883bf7aa8a23ee1854c8c728e8ecfbef6571bd69d7cc9b8f26

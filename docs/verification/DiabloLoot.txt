@@ -1,0 +1,52 @@
+Castle of the Winds Redone
+DiabloLoot v1.1 verification
+
+KILLS, PICKUP, AND RELOAD
+
+Both standalone DiabloLoot games ran in Windows 3.1 under DOSBox on a
+private Linux display. A live Goblin Fighter kill in each chapter
+awarded 6 XP, put new randomized gear alongside the native copper,
+and allowed pickup through Get. The original tile emptied. Fresh
+loads preserved the item's type, stats, rarity tag, and reveal state.
+
+Part One dropped leather armor with the native cursed condition and
+a hidden Enchanted tier. It kept its native -5 armor modifier and
+zero value. The hidden tier was still present after pickup and load.
+
+Part Two dropped an Enchanted Keen Broad Sword with +1 to hit. Its
+name, value, and active stat modifier survived pickup and load.
+
+Controlled tests also ran the shipped game code at the native damage,
+item factory, shop generation, restock, and save/load entry points.
+Both games produced Common, Enchanted, Rare, and Legendary weapons
+and body armor on enemy death at a selected deeper dungeon level.
+The tests exercised both initial stock and restocks in two shops per
+game and verified the same enhancement routine on kills and shop
+rolls. They also exercised native reward preservation in no-drop and
+nonlethal cases. No seed controls are present in the patch.
+
+CURSES AND RARITY COLORS
+
+Both games kept a cursed item's rarity text and icon accent hidden
+before first equip, including after native Identify. An incompatible
+equip attempt kept the tier hidden. Successful equip revealed it.
+The tier survived an ordinary save and reopen and the Remove Curse
+spell. The native curse stopped both the weapon and armor from being
+moved out of their slots. Once Remove Curse freed them, unequipping
+removed their active stat effects. Clean-game controls and the mod
+applied the same curse effects in the tested cases.
+
+The included curse captures use the stacked builds. Both showed
+blue Enchanted, yellow Rare, and both true orange shades of the
+Legendary icon accent in the actual 32-bit Win16 game display.
+Indexed displays render the Legendary accent as red-and-yellow.
+
+STANDALONE DIABLOLOOT EXECUTABLE SHA-256
+
+CASTLE1.EXE fe72318fdbcbcafd5afdef1f52bffe698f55c1b1f4d1a7c9407706537dd9e76f
+CASTLE2.EXE b176cc6c919b24df5cbc13e40a100dfef8e2e80c5c9b633e22e39cf6f88046fa
+
+STACKED WITH BLACK BACKGROUND EXECUTABLE SHA-256
+
+CASTLE1.EXE 9823693b54d4e8560fe5621b657eca69c1a4daae8815e5f544711084f5e9e9bd
+CASTLE2.EXE bddbaf3c6a9157883bf7aa8a23ee1854c8c728e8ecfbef6571bd69d7cc9b8f26

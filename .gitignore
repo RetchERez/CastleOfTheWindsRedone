@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+/private-inputs/
+/dist/
+*.exe
+*.EXE
+*.hlp
+*.HLP
+*.cwg
+*.CWG
