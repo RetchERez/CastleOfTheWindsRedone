@@ -41,12 +41,14 @@ py -3 tools/redone/package_windows.py dist dist/windows
 
 The resulting three EXEs bundle the setup runtime, the corresponding patch data, and runtime license notices. The original game files stay in your own source folder.
 
-## Build the More Monsters preview
+## Build More Monsters and the three-mod All-in-One
 
-Put copies of both installed All-in-One v1.1 EXEs in `stable-all-in-one`. Keep the original EXEs and help files in `private-inputs`. Build the preview packages with the same Python, Capstone and NASM setup.
+Put copies of both installed All-in-One v1.1 EXEs in `stable-all-in-one`. Keep the original EXEs and help files in `private-inputs`. Use the same Python, Capstone and NASM setup.
 
 ```sh
-python tools/redone/more_monsters/build_packages.py private-inputs stable-all-in-one preview-dist
+python tools/redone/more_monsters/build_packages.py private-inputs stable-all-in-one roster-dist
 ```
 
-This builds the standalone More Monsters package and the All-in-One preview package. On 64-bit Windows, pass `preview-dist` to `package_windows.py` to bundle their Windows installers.
+This builds the More Monsters and three-mod All-in-One packages. To support direct upgrades, use `--previous-monsters`, `--previous-preview`, `--diabloloot`, or `--black-background` with the folders containing the respective installed EXEs. On 64-bit Windows, pass `roster-dist` to `package_windows.py` to build their self-contained installers.
+
+The sprite sources are in `tools/redone/more_monsters/art`. To regenerate the checked-in DIB and PNG assets, install Pillow and run `draw_more_monsters.py`, `draw_creatures.py`, and `draw_humanoids.py` in that directory.

@@ -4,11 +4,10 @@ Modular patches for both chapters of the original 16-bit *Castle of the Winds* v
 
 | Download | What it changes |
 | --- | --- |
-| [All-in-One v1.1](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/all-in-one-v1.1) | Installs both current mods in one step. |
+| [All-in-One v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/all-in-one-v1.0-full) | Installs DiabloLoot, Black Background, and More Monsters together |
 | [DiabloLoot v1.2](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/diabloloot-v1.2) | Adds randomized gear to enemy drops and shop stock, with broader, color-coded rarity marks. |
 | [Black Background v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/black-background-v1.0) | Makes unexplored map cells black while keeping explored tiles and the interface in their original colors. |
-
-The optional [More Monsters v0.1 Preview](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/more-monsters-v0.1) adds Giant Centipedes and Giant Beetles. [All-in-One v1.2 Preview](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/all-in-one-v1.2-preview) includes all three patches. All-in-One v1.1 remains the stable download.
+| [More Monsters v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/more-monsters-v1.0) | Adds 25 enemy types in Part I and 40 in Part II, all with original 32×32 sprites |
 
 ## Install
 
@@ -19,11 +18,13 @@ The optional [More Monsters v0.1 Preview](https://github.com/RetchERez/CastleOfT
 
 For Linux or scripted installs, extract the portable patch ZIP and run `python3 apply_redone.py castl11a.zip Castle-Redone`. Substitute your original files folder or a compatible Redone folder as the first argument if needed.
 
-Both standalone patches can be stacked in either order. Give the second installer the output folder from the first and choose a new destination. All-in-One also accepts the output from either standalone mod. Copy your saves separately into the matching chapter's new folder.
+DiabloLoot and Black Background can be stacked in either order. To install all three mods, use All-in-One with the original game or a compatible current or preview installation as the source. Copy your saves separately into the matching chapter's new folder.
 
 ## In-game previews
 
-![Nine screenshots from the two chapters of All-in-One v1.1 showing dungeons, loot, rarity marks, and shops](docs/verification/All-in-One-Gameplay-Collage.png)
+![Nine gameplay screenshots from All-in-One](docs/verification/All-in-One-Gameplay-Collage.png)
+
+![The 40 original More Monsters sprites](docs/verification/More-Monsters-Roster.png)
 
 | DiabloLoot | Black Background |
 | --- | --- |

@@ -1,4 +1,4 @@
-"""Build the three self-contained 64-bit Windows installers."""
+"""Build self-contained 64-bit Windows installers for the requested editions."""
 
 import argparse
 from importlib import metadata
@@ -14,8 +14,8 @@ EDITIONS = {
     'diabloloot': ('DiabloLoot', 'v1.2'),
     'black-background': ('Black Background', 'v1.0'),
     'all-in-one': ('All-in-One', 'v1.1'),
-    'more-monsters': ('More Monsters', 'v0.1'),
-    'all-in-one-preview': ('All-in-One Preview', 'v1.2'),
+    'more-monsters': ('More Monsters', 'v1.0'),
+    'all-in-one-full': ('All-in-One', 'v1.0'),
 }
 
 

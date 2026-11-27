@@ -1,0 +1,957 @@
+[
+  {
+    "logical_id": 1,
+    "name": "Giant Centipede",
+    "anchor": "Viper",
+    "xp": 4,
+    "hp_pct": 75,
+    "damage_pct": 70,
+    "speed_pct": 100,
+    "role": "Skirmisher",
+    "loot": "A",
+    "part1": [
+      4,
+      5,
+      6,
+      11,
+      12
+    ],
+    "part2": [
+      3,
+      4
+    ]
+  },
+  {
+    "logical_id": 2,
+    "name": "Giant Beetle",
+    "anchor": "Giant Red Ant",
+    "xp": 6,
+    "hp_pct": 115,
+    "damage_pct": 80,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "A",
+    "part1": [
+      4,
+      5,
+      6,
+      11,
+      12,
+      13
+    ],
+    "part2": [
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "logical_id": 3,
+    "name": "Giant Black Ant",
+    "anchor": "Giant Red Ant",
+    "xp": 9,
+    "hp_pct": 115,
+    "damage_pct": 110,
+    "speed_pct": 100,
+    "role": "Melee",
+    "loot": "A",
+    "part1": [
+      5,
+      6,
+      11,
+      12,
+      13,
+      14
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "logical_id": 4,
+    "name": "Giant Cave Spider",
+    "anchor": "Giant Trapdoor Spider",
+    "xp": 12,
+    "hp_pct": 100,
+    "damage_pct": 85,
+    "speed_pct": 100,
+    "role": "Poison",
+    "loot": "A",
+    "part1": [
+      5,
+      6,
+      12,
+      13,
+      14,
+      15
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "logical_id": 5,
+    "name": "Giant Leech",
+    "anchor": "Large Snake",
+    "xp": 5,
+    "hp_pct": 120,
+    "damage_pct": 95,
+    "speed_pct": 75,
+    "role": "Melee",
+    "loot": "A",
+    "part1": [
+      5,
+      6,
+      12,
+      13,
+      14
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "logical_id": 6,
+    "name": "Goblin Archer",
+    "anchor": "Bandit",
+    "xp": 7,
+    "hp_pct": 65,
+    "damage_pct": 65,
+    "speed_pct": 100,
+    "role": "Ranged",
+    "loot": "H",
+    "part1": [
+      5,
+      6,
+      11,
+      12,
+      13,
+      14
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "logical_id": 7,
+    "name": "Goblin Shaman",
+    "anchor": "Goblin Fighter",
+    "xp": 9,
+    "hp_pct": 85,
+    "damage_pct": 85,
+    "speed_pct": 75,
+    "role": "Caster",
+    "loot": "M",
+    "part1": [
+      6,
+      12,
+      13,
+      14,
+      15
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "logical_id": 8,
+    "name": "Kobold Warrior",
+    "anchor": "Kobold",
+    "xp": 4,
+    "hp_pct": 145,
+    "damage_pct": 110,
+    "speed_pct": 90,
+    "role": "Armored",
+    "loot": "H",
+    "part1": [
+      5,
+      6,
+      11,
+      12,
+      13
+    ],
+    "part2": [
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "logical_id": 9,
+    "name": "Giant Toad",
+    "anchor": "Huge Lizard",
+    "xp": 9,
+    "hp_pct": 100,
+    "damage_pct": 105,
+    "speed_pct": 75,
+    "role": "Melee",
+    "loot": "A",
+    "part1": [
+      5,
+      6,
+      12,
+      13,
+      14
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "logical_id": 10,
+    "name": "Black Slime",
+    "anchor": "Slime",
+    "xp": 12,
+    "hp_pct": 110,
+    "damage_pct": 95,
+    "speed_pct": 75,
+    "role": "Resistant",
+    "loot": "A",
+    "part1": [
+      6,
+      12,
+      13,
+      14,
+      15
+    ],
+    "part2": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "logical_id": 11,
+    "name": "Dire Rat",
+    "anchor": "Giant Rat",
+    "xp": 3,
+    "hp_pct": 175,
+    "damage_pct": 125,
+    "speed_pct": 85,
+    "role": "Skirmisher",
+    "loot": "A",
+    "part1": [
+      5,
+      6,
+      12,
+      13,
+      14
+    ],
+    "part2": [
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "logical_id": 12,
+    "name": "Skeleton Archer",
+    "anchor": "Bandit",
+    "xp": 11,
+    "hp_pct": 80,
+    "damage_pct": 80,
+    "speed_pct": 75,
+    "role": "Ranged",
+    "loot": "U",
+    "part1": [
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "part2": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  {
+    "logical_id": 13,
+    "name": "Skeleton Warrior",
+    "anchor": "Skeleton",
+    "xp": 10,
+    "hp_pct": 175,
+    "damage_pct": 140,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "U",
+    "part1": [
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "part2": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "logical_id": 14,
+    "name": "Ghoul",
+    "anchor": "Walking Corpse",
+    "xp": 13,
+    "hp_pct": 125,
+    "damage_pct": 115,
+    "speed_pct": 100,
+    "role": "Skirmisher",
+    "loot": "U",
+    "part1": [
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "part2": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "logical_id": 15,
+    "name": "Orc Warrior",
+    "anchor": "Goblin Fighter",
+    "xp": 11,
+    "hp_pct": 140,
+    "damage_pct": 125,
+    "speed_pct": 90,
+    "role": "Melee",
+    "loot": "H",
+    "part1": [
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "part2": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "logical_id": 16,
+    "name": "Orc Archer",
+    "anchor": "Bandit",
+    "xp": 13,
+    "hp_pct": 110,
+    "damage_pct": 110,
+    "speed_pct": 90,
+    "role": "Ranged",
+    "loot": "H",
+    "part1": [
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "part2": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  {
+    "logical_id": 17,
+    "name": "Black Dwarf",
+    "anchor": "Evil Warrior",
+    "xp": 22,
+    "hp_pct": 85,
+    "damage_pct": 90,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "H",
+    "part1": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "part2": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  {
+    "logical_id": 18,
+    "name": "Bandit Swordsman",
+    "anchor": "Bandit",
+    "xp": 12,
+    "hp_pct": 120,
+    "damage_pct": 125,
+    "speed_pct": 100,
+    "role": "Melee",
+    "loot": "H",
+    "part1": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "part2": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "logical_id": 19,
+    "name": "Dire Wolf",
+    "anchor": "Gray Wolf",
+    "xp": 19,
+    "hp_pct": 135,
+    "damage_pct": 115,
+    "speed_pct": 100,
+    "role": "Skirmisher",
+    "loot": "A",
+    "part1": [
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "part2": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  {
+    "logical_id": 20,
+    "name": "Forest Troll",
+    "anchor": "Gruesome Troll",
+    "xp": 22,
+    "hp_pct": 100,
+    "damage_pct": 90,
+    "speed_pct": 85,
+    "role": "Regenerator",
+    "loot": "H",
+    "part1": [
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "part2": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "logical_id": 21,
+    "name": "Cave Troll",
+    "anchor": "Gruesome Troll",
+    "xp": 30,
+    "hp_pct": 135,
+    "damage_pct": 120,
+    "speed_pct": 75,
+    "role": "Regenerator",
+    "loot": "H",
+    "part1": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "part2": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  {
+    "logical_id": 22,
+    "name": "Animated Suit Of Armor",
+    "anchor": "Animated Bronze Statue",
+    "xp": 25,
+    "hp_pct": 100,
+    "damage_pct": 90,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "C",
+    "part1": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "part2": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  {
+    "logical_id": 23,
+    "name": "Gargoyle",
+    "anchor": "Animated Bronze Statue",
+    "xp": 29,
+    "hp_pct": 115,
+    "damage_pct": 100,
+    "speed_pct": 90,
+    "role": "Armored",
+    "loot": "C",
+    "part1": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "part2": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  {
+    "logical_id": 24,
+    "name": "Draugr",
+    "anchor": "Evil Warrior",
+    "xp": 28,
+    "hp_pct": 115,
+    "damage_pct": 105,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "U",
+    "part1": [
+      17,
+      18,
+      19
+    ],
+    "part2": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  {
+    "logical_id": 25,
+    "name": "Barrow Draugr",
+    "anchor": "Barrow Wight",
+    "xp": 42,
+    "hp_pct": 115,
+    "damage_pct": 100,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "U",
+    "part1": [],
+    "part2": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ]
+  },
+  {
+    "logical_id": 26,
+    "name": "Fallen Knight",
+    "anchor": "Berserker",
+    "xp": 32,
+    "hp_pct": 115,
+    "damage_pct": 95,
+    "speed_pct": 75,
+    "role": "Armored",
+    "loot": "H",
+    "part1": [
+      17,
+      18,
+      19
+    ],
+    "part2": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  {
+    "logical_id": 27,
+    "name": "Dark Sorcerer",
+    "anchor": "Wizard",
+    "xp": 40,
+    "hp_pct": 80,
+    "damage_pct": 85,
+    "speed_pct": 75,
+    "role": "Caster",
+    "loot": "M",
+    "part1": [],
+    "part2": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  {
+    "logical_id": 28,
+    "name": "Basilisk",
+    "anchor": "Cave Bear",
+    "xp": 33,
+    "hp_pct": 100,
+    "damage_pct": 95,
+    "speed_pct": 75,
+    "role": "Poison",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  {
+    "logical_id": 29,
+    "name": "Cockatrice",
+    "anchor": "Manticore",
+    "xp": 25,
+    "hp_pct": 95,
+    "damage_pct": 90,
+    "speed_pct": 100,
+    "role": "Skirmisher",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  {
+    "logical_id": 30,
+    "name": "Lindworm",
+    "anchor": "Young Green Dragon",
+    "xp": 32,
+    "hp_pct": 140,
+    "damage_pct": 110,
+    "speed_pct": 75,
+    "role": "Poison",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ]
+  },
+  {
+    "logical_id": 31,
+    "name": "Lesser Wyvern",
+    "anchor": "Young Adult Green Dragon",
+    "xp": 34,
+    "hp_pct": 85,
+    "damage_pct": 90,
+    "speed_pct": 100,
+    "role": "Poison",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  {
+    "logical_id": 32,
+    "name": "Greater Wyvern",
+    "anchor": "Adult Green Dragon",
+    "xp": 58,
+    "hp_pct": 105,
+    "damage_pct": 115,
+    "speed_pct": 100,
+    "role": "Poison",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ]
+  },
+  {
+    "logical_id": 33,
+    "name": "Stone Troll",
+    "anchor": "Stone Giant",
+    "xp": 52,
+    "hp_pct": 100,
+    "damage_pct": 80,
+    "speed_pct": 75,
+    "role": "Regenerator",
+    "loot": "H",
+    "part1": [],
+    "part2": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  {
+    "logical_id": 34,
+    "name": "Frost Troll",
+    "anchor": "Frost Giant",
+    "xp": 56,
+    "hp_pct": 90,
+    "damage_pct": 85,
+    "speed_pct": 75,
+    "role": "Elemental melee",
+    "loot": "H",
+    "part1": [],
+    "part2": [
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  {
+    "logical_id": 35,
+    "name": "Fire Troll",
+    "anchor": "Fire Giant",
+    "xp": 67,
+    "hp_pct": 90,
+    "damage_pct": 85,
+    "speed_pct": 75,
+    "role": "Elemental melee",
+    "loot": "H",
+    "part1": [],
+    "part2": [
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  {
+    "logical_id": 36,
+    "name": "Lightning Elemental",
+    "anchor": "Air Elemental",
+    "xp": 57,
+    "hp_pct": 90,
+    "damage_pct": 90,
+    "speed_pct": 85,
+    "role": "Elemental melee",
+    "loot": "C",
+    "part1": [],
+    "part2": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  {
+    "logical_id": 37,
+    "name": "Smoke Elemental",
+    "anchor": "Dust Elemental",
+    "xp": 45,
+    "hp_pct": 100,
+    "damage_pct": 95,
+    "speed_pct": 90,
+    "role": "Elemental melee",
+    "loot": "C",
+    "part1": [],
+    "part2": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  {
+    "logical_id": 38,
+    "name": "Frost Hound",
+    "anchor": "White Wolf",
+    "xp": 40,
+    "hp_pct": 145,
+    "damage_pct": 110,
+    "speed_pct": 100,
+    "role": "Elemental melee",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  {
+    "logical_id": 39,
+    "name": "Hell Hound",
+    "anchor": "Frost Hound",
+    "xp": 48,
+    "hp_pct": 115,
+    "damage_pct": 115,
+    "speed_pct": 100,
+    "role": "Elemental melee",
+    "loot": "A",
+    "part1": [],
+    "part2": [
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  {
+    "logical_id": 40,
+    "name": "Lesser Fire Devil",
+    "anchor": "Spiked Devil",
+    "xp": 58,
+    "hp_pct": 85,
+    "damage_pct": 90,
+    "speed_pct": 90,
+    "role": "Elemental melee",
+    "loot": "D",
+    "part1": [],
+    "part2": [
+      24,
+      25,
+      26
+    ]
+  }
+]
