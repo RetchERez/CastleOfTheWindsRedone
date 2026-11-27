@@ -8,6 +8,8 @@ New enemies rotate into the original spawn pool. The original engine still decid
 
 On 64-bit Windows, open **Windows Setup** and select the original Win16 v1.1A ZIP or extracted folder. Setup upgrades More Monsters v0.1 and accepts All-in-One v1.1 or v1.2 Preview to produce the three-mod edition. Choose a new destination and run the installed games in a Win16 runtime.
 
+If you are using the standalone installers for all three mods, install More Monsters last and select the folder containing both DiabloLoot and Black Background. [Standalone install order](../../README.md#install-all-three-without-all-in-one)
+
 For the portable patch ZIP, extract it and run the following from that folder.
 
 ```sh

@@ -18,7 +18,15 @@ Modular patches for both chapters of the original 16-bit *Castle of the Winds* v
 
 For Linux or scripted installs, extract the portable patch ZIP and run `python3 apply_redone.py castl11a.zip Castle-Redone`. Substitute your original files folder or a compatible Redone folder as the first argument if needed.
 
-DiabloLoot and Black Background can be stacked in either order. To install all three mods, use All-in-One with the original game or a compatible current or preview installation as the source. Copy your saves separately into the matching chapter's new folder.
+### Install all three without All-in-One
+
+Use the standalone installers for DiabloLoot v1.2, Black Background v1.0, and More Monsters v1.0.
+
+1. Install **DiabloLoot** or **Black Background** from the original ZIP or extracted game folder
+2. Install the other mod, using the output folder from step 1 as its source
+3. Install **More Monsters** last, using the output folder from step 2 as its source
+
+Choose a new destination each time. When using a previous install as the source, select the folder that contains both chapter folders. Copy your saves separately into the matching chapter folder after the final install. Both tested orders produce the same game and help files as All-in-One v1.0.
 
 ## In-game previews
 
