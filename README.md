@@ -38,6 +38,8 @@ The standalone Enhanced Interface setup defaults to Warm Stone. All-in-One defau
 
 ![Labeled native screenshots for Redone v1.0](docs/verification/Redone-v1.0-Labeled-Portrait.png)
 
+[View the individual 640 × 480 screenshots](docs/verification/screenshots), including the original title screen and a screenshot for each mod.
+
 ## Verification
 
 See the [updated v1.0 test coverage and checksums](docs/verification/Redone-v1.0-refresh.md), the [original v1.0 test record](docs/verification/Redone-v1.0.md), and the [development notes for the earlier modular packages](docs/Building.md).
