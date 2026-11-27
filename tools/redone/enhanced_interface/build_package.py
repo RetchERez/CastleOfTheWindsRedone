@@ -56,7 +56,7 @@ def write_readme(output, classic_folders, index, project='Enhanced Interface'):
         'Executable CRC32 checksums', '',
     ]
     if index['default_theme'] == 'classic':
-        entries.insert(11, 'All-in-One defaults to Classic. Choose Warm Stone or Dark Slate to enable the add-on.')
+        entries[10:10] = ['All-in-One defaults to Classic. Choose Warm Stone or Dark Slate to enable the add-on.', '']
     for label, folder in classic_folders.items():
         for part in (1, 2):
             name = f'CASTLE{part}.EXE'

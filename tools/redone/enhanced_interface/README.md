@@ -8,7 +8,7 @@ Warm Stone and Dark Slate change the game's own windows and drawing calls. Class
 
 Build the patch catalogue with `build_package.py` using local copies of the registered executables and supported Redone editions. It requires Python, Capstone, and NASM. The generated `.dlpatch` files contain reproducible forward transforms and a SHA-256 manifest. `package_windows.py` packages the catalogue and the native Windows installer. The installer uses its local Classic backups to switch themes or restore the previous executable. Backups belong in the player's installation and must stay out of archives and releases.
 
-## Candidate verification
+## Verification
 
 - The frozen standalone and All-in-One Windows installers accepted the registered v1.1A ZIP and installed both chapters headlessly
 - Switching through Warm Stone, Dark Slate, and Classic restored the baseline bytes and preserved the copied saves in both installs
@@ -16,4 +16,4 @@ Build the patch catalogue with `build_package.py` using local copies of the regi
 - Inventory and paper-doll colors were rendered on modern Windows using WineVDM and in Windows 3.1 using DOSBox. The DOSBox runs also exercised the town, character screen, spell dialog, options, story list and native Save As dialog
 - The Classic game binaries match their respective unthemed builds. The original releases keep their original engine and UI assets
 
-Full runtime coverage of every window and interaction remains a release requirement. Verify shop transactions, nested container interactions, all transient windows and visual states before certifying the build as final.
+See the [refresh verification record](../../../docs/verification/Redone-v1.0-refresh.md) for the tested shop and nested-container paths and the limits of coverage.
