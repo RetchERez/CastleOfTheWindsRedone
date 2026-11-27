@@ -1,49 +1,39 @@
 # Castle of the Winds I & II: Redone
 
-Modular patches for both chapters of the original 16-bit *Castle of the Winds* v1.1A, by **RetchERezzed**.
+Four mods for both adventures of the original Win16 *Castle of the Winds* v1.1A, by **RetchERezzed**.
 
-| Download | What it changes |
+[Download Redone v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/redone-v1.0)
+
+| v1.0 package | What it changes |
 | --- | --- |
-| [All-in-One v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/all-in-one-v1.0-full) | Installs DiabloLoot, Black Background, and More Monsters together |
-| [DiabloLoot v1.2](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/diabloloot-v1.2) | Adds randomized gear to enemy drops and shop stock, with broader, color-coded rarity marks. |
-| [Black Background v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/black-background-v1.0) | Makes unexplored map cells black while keeping explored tiles and the interface in their original colors. |
-| [More Monsters v1.0](https://github.com/RetchERez/CastleOfTheWindsRedone/releases/tag/more-monsters-v1.0) | Adds 25 enemy types in Part I and 40 in Part II, all with original 32×32 sprites |
+| **All-in-One** | Installs all four mods together |
+| **Diablo Loot** | Adds randomized gear to enemy drops and shops, with blue Enchanted, yellow Rare, and orange Legendary marks. Cursed gear reveals its rarity when equipped |
+| **More Monsters** | Adds 25 enemy types in Part I and 40 in Part II, with original 32 × 32 sprites and the existing spawn points |
+| **More Equipment** | Adds 16 weapons and 12 other equipment types to each game, including the Buckler and Potion Belt |
+| **Graphics Overhaul** | Includes Black Background, new wall and outdoor textures, town detail, and updates to monster art, item icons, and the toolbar. Keeps the original dungeon floors and town cobblestone |
 
 ## Install
 
-1. Get the original Win16 v1.1A `castl11a.zip` with both games and their help files. [Original game archive at Boxedwine](https://www.boxedwine.org/app/castleofthewindows/)
-2. On 64-bit Windows, open the `windows-setup.exe` asset for the release you want. The setup includes its own runtime and accepts the original ZIP or the folder you extracted it to.
-3. Choose a new destination and select **Install**. Setup writes a separate folder for each chapter.
-4. Run `CASTLE1.EXE` for *A Question of Vengeance* or `CASTLE2.EXE` for *Lifthransir's Bane* in a Win16 runtime. Verification used Windows 3.1 under DOSBox.
+1. Get the registered Win16 v1.1A archive with both games and their Help files. [Original game archive at Boxedwine](https://www.boxedwine.org/app/castleofthewindows/)
+2. On 64-bit Windows, open the Windows Setup for your chosen package. It accepts the original ZIP or an extracted game folder and includes its own runtime
+3. Select a new destination and choose **Install**
+4. Run `CASTLE1.EXE` for *A Question of Vengeance* or `CASTLE2.EXE` for *Lifthransir's Bane* in a Win16 runtime
 
-For Linux or scripted installs, extract the portable patch ZIP and run `python3 apply_redone.py castl11a.zip Castle-Redone`. Substitute your original files folder or a compatible Redone folder as the first argument if needed.
+For a scripted install, extract a portable ZIP and run `python3 apply_redone.py castl11a.zip Castle-Redone`. For Graphics Overhaul or More Equipment on the original release, the BPS archives provide per-game apply and restore patches and executable checksums.
 
-### Install all three without All-in-One
+### Install all four without All-in-One
 
-Use the standalone installers for DiabloLoot v1.2, Black Background v1.0, and More Monsters v1.0.
+1. Install **Diablo Loot** from the original ZIP or extracted game folder
+2. Install **More Monsters** from the Diablo Loot output folder
+3. Install **More Equipment** from the More Monsters output folder
+4. Install **Graphics Overhaul** from the More Equipment output folder
 
-1. Install **DiabloLoot** or **Black Background** from the original ZIP or extracted game folder
-2. Install the other mod, using the output folder from step 1 as its source
-3. Install **More Monsters** last, using the output folder from step 2 as its source
+Choose a new destination at each step. When selecting a previous install, choose the parent folder that contains both adventure folders. The tested sequence produces the same game and Help files as All-in-One. Copy saves into the corresponding adventure folders after installing.
 
-Choose a new destination each time. When using a previous install as the source, select the folder that contains both chapter folders. Copy your saves separately into the matching chapter folder after the final install. Both tested orders produce the same game and help files as All-in-One v1.0.
+## In-game preview
 
-## In-game previews
-
-![Six standalone mod screenshots with Part I on the left and Part II on the right](docs/verification/Standalone-Mods-Gameplay-Collage.png)
-
-[Open the six native 640 × 480 screenshots](docs/verification/standalone/)
-
-![The 40 original More Monsters sprites](docs/verification/More-Monsters-Roster.png)
-
-| DiabloLoot | Black Background |
-| --- | --- |
-| ![Inventory showing rarity colors and equipped cursed gear](docs/verification/DiabloLoot.png) | ![Dungeon with black unexplored cells and original floor, walls, and interface](docs/verification/Black-Background.png) |
+![Labeled native screenshots for Redone v1.0](docs/verification/Redone-v1.0-Labeled-Portrait.png)
 
 ## Verification
 
-- [DiabloLoot test results](docs/verification/DiabloLoot.txt) cover kills, drops, pickup, reload, curses, and shop stocking and restocking in each chapter. [DiabloLoot v1.2 results](docs/verification/DiabloLoot%20v1.2.txt) cover the more visible rarity marks.
-- [Black Background test results](docs/verification/Black%20Background.txt) compare the original and patched screens in both chapters.
-- [More Monsters test results](docs/verification/More-Monsters.txt) cover the native spawn paths, combat and save/load in both chapters.
-
-See the [build instructions](docs/Building.md) to produce the patches from your own original files.
+See the [v1.0 test coverage and supported checksums](docs/verification/Redone-v1.0.md) and [development notes for the earlier modular packages](docs/Building.md).
